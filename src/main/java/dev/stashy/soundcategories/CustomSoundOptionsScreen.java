@@ -7,6 +7,7 @@ import net.minecraft.client.gui.screen.ScreenTexts;
 import net.minecraft.client.gui.screen.option.GameOptionsScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.option.GameOptions;
+import net.minecraft.client.option.Option;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.TranslatableText;
@@ -24,6 +25,8 @@ public class CustomSoundOptionsScreen extends GameOptionsScreen
     protected void init()
     {
         this.list = new SoundList(this.client, this.width, this.height, 32, this.height - 32, 25);
+        list.addOption(gameOptions, Option.AUDIO_DEVICE);
+
         this.list.addCategory(SoundCategory.MASTER);
         int count = SoundCategory.values().length;
         for (int i = 1; i < Math.ceil(count); i += 2)

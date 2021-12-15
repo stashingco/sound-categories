@@ -5,8 +5,11 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.Element;
 import net.minecraft.client.gui.Selectable;
+import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.client.gui.widget.ElementListWidget;
 import net.minecraft.client.gui.widget.SoundSliderWidget;
+import net.minecraft.client.option.GameOptions;
+import net.minecraft.client.option.Option;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.sound.SoundCategory;
 import org.jetbrains.annotations.Nullable;
@@ -33,6 +36,11 @@ public class SoundList extends ElementListWidget<SoundList.SoundEntry>
         return super.addEntry(SoundEntry.createDouble(first, second, this.width));
     }
 
+    public int addOption(GameOptions o, Option w)
+    {
+        return super.addEntry(SoundEntry.createOption(o, w, this.width));
+    }
+
     public int getRowWidth()
     {
         return 400;
@@ -46,11 +54,11 @@ public class SoundList extends ElementListWidget<SoundList.SoundEntry>
     @Environment(EnvType.CLIENT)
     protected static class SoundEntry extends ElementListWidget.Entry<SoundList.SoundEntry>
     {
-        List<SoundSliderWidget> sliders;
+        List<? extends ClickableWidget> widgets;
 
-        public SoundEntry(List<SoundSliderWidget> w)
+        private SoundEntry(List<? extends ClickableWidget> w)
         {
-            sliders = w;
+            widgets = w;
         }
 
         public static SoundEntry create(SoundCategory cat, int width)
@@ -68,20 +76,26 @@ public class SoundList extends ElementListWidget<SoundList.SoundEntry>
             return new SoundEntry(w);
         }
 
+        public static SoundEntry createOption(GameOptions o, Option w, int width)
+        {
+            var b = w.createButton(o, width / 2 - 155, 0, 310);
+            return new SoundEntry(List.of(b));
+        }
+
         public List<? extends Element> children()
         {
-            return this.sliders;
+            return this.widgets;
         }
 
         public List<? extends Selectable> selectableChildren()
         {
-            return this.sliders;
+            return this.widgets;
         }
 
         @Override
         public void render(MatrixStack matrices, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta)
         {
-            this.sliders.forEach((s) -> {
+            this.widgets.forEach((s) -> {
                 s.y = y;
                 s.render(matrices, mouseX, mouseY, tickDelta);
             });
