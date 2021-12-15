@@ -33,8 +33,11 @@ public class CustomSoundOptionsScreen extends GameOptionsScreen
             list.addDoubleCategory(SoundCategory.values()[i], i + 1 < count ? SoundCategory.values()[i + 1] : null);
 
         this.addSelectableChild(list);
+
         this.addDrawableChild(
-                new ButtonWidget(this.width / 2 - 100, this.height - 27, 200, 20, ScreenTexts.DONE, (button) -> {
+                Option.SUBTITLES.createButton(this.gameOptions, this.width / 2 - 155, this.height - 27, 150));
+        this.addDrawableChild(
+                new ButtonWidget(this.width / 2, this.height - 27, 155, 20, ScreenTexts.DONE, (button) -> {
                     this.client.options.write();
                     this.client.setScreen(this.parent);
                 }));
