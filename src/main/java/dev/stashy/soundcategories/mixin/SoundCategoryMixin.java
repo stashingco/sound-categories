@@ -39,7 +39,7 @@ public class SoundCategoryMixin
             shift = At.Shift.AFTER))
     private static void addCustomVariants(CallbackInfo ci)
     {
-        var categories = new ArrayList<>(Arrays.asList(field_15255));
+        ArrayList<SoundCategory> categories = new ArrayList<>(Arrays.asList(field_15255));
         SoundCategories.getCategories().keySet().forEach((it) -> {
             SoundCategories.getCategories().get(it).apply(addVariant(categories, it));
         });
@@ -49,9 +49,9 @@ public class SoundCategoryMixin
 
     private static SoundCategory addVariant(ArrayList<SoundCategory> categories, String name)
     {
-        var cat = newSoundCategory(name.toUpperCase(Locale.ROOT),
-                                   categories.get(categories.size() - 1).ordinal() + 1,
-                                   name.toLowerCase(Locale.ROOT));
+        SoundCategory cat = newSoundCategory(name.toUpperCase(Locale.ROOT),
+                                             categories.get(categories.size() - 1).ordinal() + 1,
+                                             name.toLowerCase(Locale.ROOT));
         categories.add(cat);
         return cat;
     }
