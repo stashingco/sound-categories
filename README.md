@@ -26,17 +26,27 @@ it separately.
 
 ## Adding a category
 
-In your `onInitializeClient` function you have to call the `SoundCategories.register` function. To keep a reference of
-your category once it gets created, there is a callback which returns your new category.
+Classes that contain sound categories must implement `CategoryLoader` so that they are picked up by the loader. Every
+SoundCategory you define must have the `CategoryLoader.Register` annotation - they will have the category reference
+injected once it is created.
+
+Example class:
 
 ```java
-static SoundCategory CUSTOM_CATEGORY;
+import dev.stashy.soundcategories.CategoryLoader;
+import net.minecraft.sound.SoundCategory;
 
-@Override
-public void onInitializeClient(){
-        register("CUSTOM_CATEGORY",(cat)->{CUSTOM_CATEGORY=cat;});
-        }
+public class CustomCategories implements CategoryLoader
+{
+    @CategoryLoader.Register
+    public static SoundCategory CUSTOM1;
+    @CategoryLoader.Register(name = "custom_category_name")
+    public static SoundCategory CUSTOM2;
+}
 ```
+
+After implementing the loader, make sure you add the class as an entrypoint for `sound-categories` in
+your `fabric.mod.json`.
 
 ## Localization
 
