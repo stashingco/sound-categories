@@ -12,7 +12,6 @@
     "sources": "https://github.com/stashymane/sound-categories"
   },
   "license": "CC0-1.0",
-  "icon": "assets/soundcategories/icon.png",
   "environment": "client",
   "entrypoints": {
     "client": [
