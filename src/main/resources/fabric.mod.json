@@ -13,11 +13,6 @@
   },
   "license": "CC0-1.0",
   "environment": "client",
-  "entrypoints": {
-    "client": [
-      "dev.stashy.soundcategories.SoundCategories"
-    ]
-  },
   "mixins": [
     "soundcategories.mixins.json"
   ],

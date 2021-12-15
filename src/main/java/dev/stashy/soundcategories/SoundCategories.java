@@ -1,23 +1,39 @@
 package dev.stashy.soundcategories;
 
-import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.sound.SoundCategory;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
-public class SoundCategories implements ClientModInitializer
+public class SoundCategories
 {
     private static final Map<String, RegisterCallback> categories = new HashMap<>();
 
-    @Override
-    public void onInitializeClient()
+    public static void initCategories()
     {
-    }
-
-    public static void register(String name, RegisterCallback callback)
-    {
-        categories.put(name, callback);
+        FabricLoader.getInstance().getEntrypoints("sound-categories", CategoryLoader.class)
+                    .forEach(entry -> {
+                        Arrays.stream(entry.getClass().getDeclaredFields())
+                              .filter((f) -> f.isAnnotationPresent(CategoryLoader.Register.class))
+                              .forEach((it) -> {
+                                  var name = it.getAnnotation(CategoryLoader.Register.class).name();
+                                  if (Objects.equals(name, ""))
+                                      name = it.getName();
+                                  categories.put(name, cat -> {
+                                      try
+                                      {
+                                          it.set(entry, cat);
+                                      }
+                                      catch (IllegalAccessException e)
+                                      {
+                                          e.printStackTrace();
+                                      }
+                                  });
+                              });
+                    });
     }
 
     public static Map<String, RegisterCallback> getCategories()
