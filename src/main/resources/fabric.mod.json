@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "sound-categories",
+  "id": "soundcategories",
   "version": "${version}",
   "name": "Sound Categories",
   "description": "Allows mods to define custom sound categories.",
@@ -12,7 +12,7 @@
     "sources": "https://github.com/stashymane/sound-categories"
   },
   "license": "CC0-1.0",
-  "icon": "assets/sound-categories/icon.png",
+  "icon": "assets/soundcategories/icon.png",
   "environment": "client",
   "entrypoints": {
     "client": [
@@ -20,7 +20,7 @@
     ]
   },
   "mixins": [
-    "sound-categories.mixins.json"
+    "soundcategories.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.7.4",
