@@ -19,7 +19,7 @@ public class SoundCategories
                         Arrays.stream(entry.getClass().getDeclaredFields())
                               .filter((f) -> f.isAnnotationPresent(CategoryLoader.Register.class))
                               .forEach((it) -> {
-                                  var name = it.getAnnotation(CategoryLoader.Register.class).name();
+                                  String name = it.getAnnotation(CategoryLoader.Register.class).name();
                                   if (Objects.equals(name, ""))
                                       name = it.getName();
                                   categories.put(name, cat -> {
