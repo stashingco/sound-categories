@@ -5,13 +5,14 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.Element;
 import net.minecraft.client.gui.Selectable;
-import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.client.gui.widget.ElementListWidget;
 import net.minecraft.client.gui.widget.SoundSliderWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.sound.SoundCategory;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class SoundList extends ElementListWidget<SoundList.SoundEntry>
@@ -28,6 +29,11 @@ public class SoundList extends ElementListWidget<SoundList.SoundEntry>
         return super.addEntry(SoundEntry.create(cat, this.width));
     }
 
+    public int addDoubleCategory(SoundCategory first, SoundCategory second)
+    {
+        return super.addEntry(SoundEntry.createDouble(first, second, this.width));
+    }
+
     public int getRowWidth()
     {
         return 400;
@@ -41,17 +47,26 @@ public class SoundList extends ElementListWidget<SoundList.SoundEntry>
     @Environment(EnvType.CLIENT)
     protected static class SoundEntry extends ElementListWidget.Entry<SoundList.SoundEntry>
     {
-        List<ClickableWidget> sliders = new ArrayList<>();
+        List<SoundSliderWidget> sliders;
 
-        public SoundEntry(SoundSliderWidget w)
+        public SoundEntry(List<SoundSliderWidget> w)
         {
-            sliders.add(w);
+            sliders = w;
         }
 
         public static SoundEntry create(SoundCategory cat, int width)
         {
-            return new SoundEntry(
-                    new SoundSliderWidget(MinecraftClient.getInstance(), width / 2 - 155, 0, cat, 310));
+            return new SoundEntry(Arrays.asList(
+                    new SoundSliderWidget(MinecraftClient.getInstance(), width / 2 - 155, 0, cat, 310)));
+        }
+
+        public static SoundEntry createDouble(SoundCategory first, @Nullable SoundCategory second, int width)
+        {
+            List<SoundSliderWidget> w = new ArrayList<>();
+            w.add(new SoundSliderWidget(MinecraftClient.getInstance(), width / 2 - 155, 0, first, 150));
+            if (second != null)
+                w.add(new SoundSliderWidget(MinecraftClient.getInstance(), width / 2 + 5, 0, second, 150));
+            return new SoundEntry(w);
         }
 
         public List<? extends Element> children()

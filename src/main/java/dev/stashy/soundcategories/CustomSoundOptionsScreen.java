@@ -24,8 +24,10 @@ public class CustomSoundOptionsScreen extends GameOptionsScreen
     protected void init()
     {
         this.list = new SoundList(this.client, this.width, this.height, 32, this.height - 32, 25);
-        for (SoundCategory c : SoundCategory.values())
-            this.list.addCategory(c);
+        this.list.addCategory(SoundCategory.MASTER);
+        int count = SoundCategory.values().length;
+        for (int i = 1; i < Math.ceil(count); i += 2)
+            list.addDoubleCategory(SoundCategory.values()[i], i + 1 < count ? SoundCategory.values()[i + 1] : null);
 
         this.addSelectableChild(list);
         this.addDrawableChild(
