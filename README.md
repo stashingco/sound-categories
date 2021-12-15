@@ -18,8 +18,11 @@ maven {
 And the following to your dependencies:
 
 ```groovy
-modImplementation "dev.stashy:soundcategories:${project.extrasounds_version}"
+modImplementation include("dev.stashy:soundcategories:${project.extrasounds_version}")
 ```
+
+Make sure to keep the `include()` part to embed the library into your mod, as otherwise the user will have to download
+it separately.
 
 ## Adding a category
 
