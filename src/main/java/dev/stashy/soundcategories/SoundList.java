@@ -12,7 +12,6 @@ import net.minecraft.sound.SoundCategory;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class SoundList extends ElementListWidget<SoundList.SoundEntry>
@@ -56,7 +55,7 @@ public class SoundList extends ElementListWidget<SoundList.SoundEntry>
 
         public static SoundEntry create(SoundCategory cat, int width)
         {
-            return new SoundEntry(Arrays.asList(
+            return new SoundEntry(List.of(
                     new SoundSliderWidget(MinecraftClient.getInstance(), width / 2 - 155, 0, cat, 310)));
         }
 

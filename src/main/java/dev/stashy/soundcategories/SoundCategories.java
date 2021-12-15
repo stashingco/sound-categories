@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class SoundCategories implements ClientModInitializer
 {
-    private static Map<String, RegisterCallback> categories = new HashMap<>();
+    private static final Map<String, RegisterCallback> categories = new HashMap<>();
 
     @Override
     public void onInitializeClient()
