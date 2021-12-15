@@ -4,6 +4,7 @@
   "package": "dev.stashy.soundcategories.mixin",
   "compatibilityLevel": "JAVA_16",
   "client": [
+    "SoundCategoryMixin",
     "SoundSettingsMixin"
   ],
   "injectors": {
