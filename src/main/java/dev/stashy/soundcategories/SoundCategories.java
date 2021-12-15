@@ -15,7 +15,7 @@ public class SoundCategories implements ClientModInitializer
     {
     }
 
-    public static void registerCategory(String name, RegisterCallback callback)
+    public static void register(String name, RegisterCallback callback)
     {
         categories.put(name, callback);
     }
