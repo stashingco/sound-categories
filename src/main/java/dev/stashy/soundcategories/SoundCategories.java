@@ -18,10 +18,10 @@ public class SoundCategories
                         Arrays.stream(entry.getClass().getDeclaredFields())
                               .filter((f) -> f.isAnnotationPresent(CategoryLoader.Register.class))
                               .forEach((it) -> {
-                                  String name = it.getAnnotation(CategoryLoader.Register.class).name();
-                                  if (Objects.equals(name, ""))
-                                      name = it.getName();
-                                  categories.put(name, cat -> {
+                                  String id = it.getAnnotation(CategoryLoader.Register.class).id();
+                                  if (Objects.equals(id, ""))
+                                      id = it.getName();
+                                  categories.put(id, cat -> {
                                       try
                                       {
                                           it.set(entry, cat);
