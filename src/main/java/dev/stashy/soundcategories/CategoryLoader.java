@@ -9,8 +9,8 @@ public interface CategoryLoader
 {
     @Retention(RetentionPolicy.RUNTIME)
     @Target(ElementType.FIELD)
-    public @interface Register
+    @interface Register
     {
-        String name() default "";
+        String id() default "";
     }
 }
