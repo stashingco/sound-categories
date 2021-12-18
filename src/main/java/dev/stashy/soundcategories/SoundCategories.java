@@ -10,16 +10,15 @@ import java.util.Objects;
 
 public class SoundCategories
 {
-    private static final Map<String, RegisterCallback> categories = new HashMap<>();
-
-    public static void initCategories()
+    public static Map<String, RegisterCallback> getCallbacks()
     {
+        Map<String, RegisterCallback> categories = new HashMap<>();
         FabricLoader.getInstance().getEntrypoints("sound-categories", CategoryLoader.class)
                     .forEach(entry -> {
                         Arrays.stream(entry.getClass().getDeclaredFields())
                               .filter((f) -> f.isAnnotationPresent(CategoryLoader.Register.class))
                               .forEach((it) -> {
-                                  var name = it.getAnnotation(CategoryLoader.Register.class).name();
+                                  String name = it.getAnnotation(CategoryLoader.Register.class).name();
                                   if (Objects.equals(name, ""))
                                       name = it.getName();
                                   categories.put(name, cat -> {
@@ -34,10 +33,6 @@ public class SoundCategories
                                   });
                               });
                     });
-    }
-
-    public static Map<String, RegisterCallback> getCategories()
-    {
         return categories;
     }
 
