@@ -14,6 +14,15 @@ version = project.mod_version
 group = project.maven_group
 
 var modVersion = project.version.split("\\+")[0]
+var compatibleWith = []
+
+var split = project.minecraft_version.split('\\.')
+if (split.length == 3) {
+    var base = split[0] + "." + split[1]
+    compatibleWith.add(base)
+    for (int i = Integer.parseInt(split[2]); i > 0; i--)
+        compatibleWith.add(base + "." + i)
+} else compatibleWith.add(project.minecraft_version)
 
 repositories {
     maven {
@@ -89,7 +98,8 @@ curseforge {
         changelog = project.changelog.getLatest().toHTML()
         changelogType = "html"
         releaseType = "release"
-        addGameVersion project.minecraft_version
+        for (String ver : compatibleWith)
+            addGameVersion ver
 
         mainArtifact(remapJar) {
             displayName = "$modVersion for $project.minecraft_version"
@@ -115,7 +125,8 @@ task publishModrinth(type: TaskModrinthUpload) {
     versionNumber = version
     versionName = "$modVersion for $project.minecraft_version"
     uploadFile = remapJar
-    addGameVersion(project.minecraft_version)
+    for (String ver : compatibleWith)
+        addGameVersion(ver)
     addLoader("fabric")
 }
 
