@@ -2,6 +2,8 @@ package dev.stashy.soundcategories;
 
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.sound.SoundCategory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -10,6 +12,8 @@ import java.util.Objects;
 
 public class SoundCategories
 {
+    private static final Logger LOGGER = LogManager.getLogger();
+
     public static Map<String, RegisterCallback> getCallbacks()
     {
         Map<String, RegisterCallback> categories = new HashMap<>();
@@ -18,9 +22,9 @@ public class SoundCategories
                         Arrays.stream(entry.getClass().getDeclaredFields())
                               .filter((f) -> f.isAnnotationPresent(CategoryLoader.Register.class))
                               .forEach((it) -> {
-                                  String id = it.getAnnotation(CategoryLoader.Register.class).id();
-                                  if (Objects.equals(id, ""))
-                                      id = it.getName();
+                                  String id = Objects.equals(it.getAnnotation(CategoryLoader.Register.class).id(),
+                                                             "")
+                                          ? it.getName() : it.getAnnotation(CategoryLoader.Register.class).id();
                                   categories.put(id, cat -> {
                                       try
                                       {
@@ -28,6 +32,7 @@ public class SoundCategories
                                       }
                                       catch (IllegalAccessException e)
                                       {
+                                          LOGGER.error("Unable to register sound category with ID {}", id);
                                           e.printStackTrace();
                                       }
                                   });
