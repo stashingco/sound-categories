@@ -10,10 +10,9 @@ import java.util.Objects;
 
 public class SoundCategories
 {
-    private static Map<String, RegisterCallback> categories = new HashMap<>();
-
-    public static void initCategories()
+    public static Map<String, RegisterCallback> getCallbacks()
     {
+        Map<String, RegisterCallback> categories = new HashMap<>();
         FabricLoader.getInstance().getEntrypoints("sound-categories", CategoryLoader.class)
                     .forEach(entry -> {
                         Arrays.stream(entry.getClass().getDeclaredFields())
@@ -34,10 +33,6 @@ public class SoundCategories
                                   });
                               });
                     });
-    }
-
-    public static Map<String, RegisterCallback> getCategories()
-    {
         return categories;
     }
 
