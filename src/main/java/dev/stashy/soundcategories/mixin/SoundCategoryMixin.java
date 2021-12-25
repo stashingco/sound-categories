@@ -1,7 +1,10 @@
 package dev.stashy.soundcategories.mixin;
 
+import dev.stashy.soundcategories.CategoryLoader;
 import dev.stashy.soundcategories.SoundCategories;
 import net.minecraft.sound.SoundCategory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -15,10 +18,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
+import java.util.Objects;
 
 @Mixin(SoundCategory.class)
 public class SoundCategoryMixin
 {
+    private static final Logger LOGGER = LogManager.getLogger();
+
     @SuppressWarnings("InvokerTarget")
     @Invoker("<init>")
     private static SoundCategory newSoundCategory(String internalName, int internalId, String name)
@@ -40,8 +46,20 @@ public class SoundCategoryMixin
     private static void addCustomVariants(CallbackInfo ci)
     {
         ArrayList<SoundCategory> categories = new ArrayList<>(Arrays.asList(field_15255));
-        SoundCategories.getCallbacks().forEach((key, value) -> {
-            value.apply(addVariant(categories, key));
+        SoundCategories.getCategories().forEach((loader, fields) -> {
+            fields.forEach(field -> {
+                var annotation = field.getAnnotation(CategoryLoader.Register.class);
+                var id = Objects.equals(annotation.id(), "") ? field.getName() : annotation.id();
+                try
+                {
+                    field.set(loader, addVariant(categories, id));
+                }
+                catch (IllegalAccessException e)
+                {
+                    LOGGER.error("Failed to register sound category with ID {}", id);
+                    e.printStackTrace();
+                }
+            });
         });
 
         field_15255 = categories.toArray(new SoundCategory[0]);
