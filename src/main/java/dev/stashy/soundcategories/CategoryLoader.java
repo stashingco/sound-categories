@@ -18,5 +18,11 @@ public interface CategoryLoader
          * The ID of the sound category - if omitted, will be automatically set from the field name.
          */
         String id() default "";
+
+        /**
+         * Sets the SoundCategory for a field to be the master category - all other categories in the same class will be
+         * hidden under an additional icon. If more than one master category is set, only the first one will be used.
+         */
+        boolean master() default false;
     }
 }
