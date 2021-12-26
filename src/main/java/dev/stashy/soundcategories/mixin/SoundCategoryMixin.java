@@ -4,7 +4,6 @@ import dev.stashy.soundcategories.CategoryLoader;
 import dev.stashy.soundcategories.SoundCategories;
 import net.minecraft.sound.SoundCategory;
 import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -23,8 +22,6 @@ import java.util.Objects;
 @Mixin(SoundCategory.class)
 public class SoundCategoryMixin
 {
-    private static final Logger LOGGER = LogManager.getLogger();
-
     @SuppressWarnings("InvokerTarget")
     @Invoker("<init>")
     private static SoundCategory newSoundCategory(String internalName, int internalId, String name)
@@ -56,7 +53,7 @@ public class SoundCategoryMixin
                 }
                 catch (IllegalAccessException e)
                 {
-                    LOGGER.error("Failed to register sound category with ID {}", id);
+                    LogManager.getLogger().debug("Failed to register sound category with ID {}", id);
                     e.printStackTrace();
                 }
             });

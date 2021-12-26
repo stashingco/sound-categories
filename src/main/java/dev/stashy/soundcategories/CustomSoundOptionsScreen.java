@@ -11,6 +11,8 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.TranslatableText;
 
+import java.util.Arrays;
+
 @Environment(EnvType.CLIENT)
 public class CustomSoundOptionsScreen extends GameOptionsScreen
 {
@@ -25,9 +27,17 @@ public class CustomSoundOptionsScreen extends GameOptionsScreen
     {
         this.list = new SoundList(this.client, this.width, this.height, 32, this.height - 32, 25);
         this.list.addCategory(SoundCategory.MASTER);
-        int count = SoundCategory.values().length;
-        for (int i = 1; i < Math.ceil(count); i += 2)
-            list.addDoubleCategory(SoundCategory.values()[i], i + 1 < count ? SoundCategory.values()[i + 1] : null);
+        var cats = Arrays.stream(SoundCategory.values())
+                         .filter(it -> !SoundCategories.parents.containsKey(
+                                 it) && !SoundCategories.parents.containsValue(it))
+                         .skip(1).toList();
+        var count = cats.size();
+        for (int i = 0; i < Math.ceil(count); i += 2)
+            list.addDoubleCategory(cats.get(i), i + 1 < count ? cats.get(i + 1) : null);
+
+        Arrays.stream(SoundCategory.values()).filter(SoundCategories.parents::containsValue).forEach(it -> {
+            list.addGroup(it);
+        });
 
         this.addSelectableChild(list);
         this.addDrawableChild(
