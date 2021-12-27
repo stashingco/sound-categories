@@ -38,25 +38,26 @@ public class SoundCategories implements ClientModInitializer
     {
         var init = SoundCategory.MASTER; //required so that the new categories are actually created, not actually used
 
-        getCategories().forEach((loader, fields) -> {
-            var masterField = fields.stream()
-                                    .filter(it -> it.getAnnotation(CategoryLoader.Register.class).master()).findFirst();
-            fields.forEach(field -> {
-                if (masterField.isPresent())
+        var cats = getCategories();
+        for (CategoryLoader loader : cats.keySet())
+        {
+            SoundCategory master = null;
+            for (Field f : cats.get(loader))
+            {
+                var annotation = f.getAnnotation(CategoryLoader.Register.class);
+                try
                 {
-                    try
-                    {
-                        SoundCategory master = (SoundCategory) masterField.get().get(loader);
-                        SoundCategory child = (SoundCategory) field.get(loader);
-                        if (master != child)
-                            parents.put(child, master);
-                    }
-                    catch (IllegalAccessException e)
-                    {
-                        e.printStackTrace();
-                    }
+                    var category = (SoundCategory) f.get(loader);
+                    if (annotation.master())
+                        master = category;
+                    else if (master != null)
+                        parents.put(category, master);
                 }
-            });
-        });
+                catch (IllegalAccessException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }
