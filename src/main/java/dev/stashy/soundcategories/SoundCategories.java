@@ -3,6 +3,7 @@ package dev.stashy.soundcategories;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -17,6 +18,8 @@ public class SoundCategories implements ClientModInitializer
 {
     private static final Logger LOGGER = LogManager.getLogger();
     public static final Map<SoundCategory, SoundCategory> parents = new HashMap<>();
+
+    public static final Identifier SETTINGS_ICON = new Identifier("soundcategories", "textures/gui/settings.png");
 
     public static Map<CategoryLoader, List<Field>> getCategories()
     {

@@ -8,12 +8,11 @@ import net.minecraft.client.gui.Selectable;
 import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.client.gui.widget.ElementListWidget;
 import net.minecraft.client.gui.widget.SoundSliderWidget;
+import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.option.Option;
-import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -95,8 +94,8 @@ public class SoundList extends ElementListWidget<SoundList.SoundEntry>
                     List.of(
                             new SoundSliderWidget(MinecraftClient.getInstance(), width / 2 - 155, 0, group, 285),
 //                            new ButtonWidget(width / 2 + 135, 0, 20, 20, Text.of("X"), button -> {}),
-                            new TexturedButtonWidget(width / 2 + 135, 0, 20, 20, 0, 0,
-                                                     new Identifier("soundcategories", "textures/gui/cog.png"),
+                            new TexturedButtonWidget(width / 2 + 135, 0, 20, 20, 0, 0, 20,
+                                                     SoundCategories.SETTINGS_ICON, 20, 40,
                                                      button -> {
 
                                                      })
