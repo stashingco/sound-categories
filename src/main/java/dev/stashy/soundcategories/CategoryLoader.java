@@ -21,7 +21,8 @@ public interface CategoryLoader
 
         /**
          * Sets the SoundCategory of a field to be the master category.
-         * All categories defined after it will become grouped within the master.
+         * All categories defined after it will become grouped within the master,
+         * and their volumes will be multiplied with the master category's volume level.
          */
         boolean master() default false;
     }
