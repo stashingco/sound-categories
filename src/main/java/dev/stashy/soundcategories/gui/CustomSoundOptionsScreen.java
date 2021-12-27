@@ -40,7 +40,7 @@ public class CustomSoundOptionsScreen extends GameOptionsScreen
             list.addDoubleCategory(cats.get(i), i + 1 < count ? cats.get(i + 1) : null);
 
         Arrays.stream(SoundCategory.values()).filter(SoundCategories.parents::containsValue).forEach(it -> {
-            list.addGroup(it);
+            list.addGroup(it, button -> {this.client.setScreen(new SoundGroupOptionsScreen(this, gameOptions, it));});
         });
 
         this.addSelectableChild(list);
