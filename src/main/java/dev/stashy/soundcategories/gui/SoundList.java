@@ -6,10 +6,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.Element;
 import net.minecraft.client.gui.Selectable;
-import net.minecraft.client.gui.widget.ClickableWidget;
-import net.minecraft.client.gui.widget.ElementListWidget;
-import net.minecraft.client.gui.widget.SoundSliderWidget;
-import net.minecraft.client.gui.widget.TexturedButtonWidget;
+import net.minecraft.client.gui.widget.*;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.option.Option;
 import net.minecraft.client.util.math.MatrixStack;
@@ -43,9 +40,9 @@ public class SoundList extends ElementListWidget<SoundList.SoundEntry>
         return super.addEntry(SoundEntry.createOption(o, w, this.width));
     }
 
-    public int addGroup(SoundCategory group)
+    public int addGroup(SoundCategory group, ButtonWidget.PressAction pressAction)
     {
-        return super.addEntry(SoundEntry.createGroup(group, this.width));
+        return super.addEntry(SoundEntry.createGroup(group, this.width, pressAction));
     }
 
     public int getRowWidth()
@@ -89,17 +86,13 @@ public class SoundList extends ElementListWidget<SoundList.SoundEntry>
             return new SoundEntry(List.of(b));
         }
 
-        public static SoundEntry createGroup(SoundCategory group, int width)
+        public static SoundEntry createGroup(SoundCategory group, int width, ButtonWidget.PressAction pressAction)
         {
             return new SoundEntry(
                     List.of(
                             new SoundSliderWidget(MinecraftClient.getInstance(), width / 2 - 155, 0, group, 285),
-//                            new ButtonWidget(width / 2 + 135, 0, 20, 20, Text.of("X"), button -> {}),
                             new TexturedButtonWidget(width / 2 + 135, 0, 20, 20, 0, 0, 20,
-                                                     SoundCategories.SETTINGS_ICON, 20, 40,
-                                                     button -> {
-
-                                                     })
+                                                     SoundCategories.SETTINGS_ICON, 20, 40, pressAction)
                     ));
         }
 
