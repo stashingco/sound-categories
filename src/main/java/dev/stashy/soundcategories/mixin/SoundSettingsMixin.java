@@ -1,6 +1,6 @@
 package dev.stashy.soundcategories.mixin;
 
-import dev.stashy.soundcategories.CustomSoundOptionsScreen;
+import dev.stashy.soundcategories.gui.CustomSoundOptionsScreen;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.option.OptionsScreen;
