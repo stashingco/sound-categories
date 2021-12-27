@@ -20,8 +20,8 @@ public interface CategoryLoader
         String id() default "";
 
         /**
-         * Sets the SoundCategory for a field to be the master category - all other categories in the same class will be
-         * hidden under an additional icon. If more than one master category is set, only the first one will be used.
+         * Sets the SoundCategory of a field to be the master category.
+         * All categories defined after it will become grouped within the master.
          */
         boolean master() default false;
     }
