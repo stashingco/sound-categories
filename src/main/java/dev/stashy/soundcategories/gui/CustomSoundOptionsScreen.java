@@ -1,5 +1,6 @@
-package dev.stashy.soundcategories;
+package dev.stashy.soundcategories.gui;
 
+import dev.stashy.soundcategories.SoundCategories;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.screen.Screen;
