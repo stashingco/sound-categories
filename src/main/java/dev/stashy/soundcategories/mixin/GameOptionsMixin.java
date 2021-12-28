@@ -14,11 +14,13 @@ public class GameOptionsMixin
     @Inject(at = @At(value = "HEAD"), method = "method_33667", cancellable = true)
     private static void getDefaultFloat(GameOptions.Visitor visitor, SoundCategory category, Float currentLevel, CallbackInfoReturnable<Float> cir)
     {
-        float level;
-        if (currentLevel == null && SoundCategories.defaultLevels.containsKey(category))
-            level = SoundCategories.defaultLevels.get(category);
-        else
-            level = currentLevel != null ? currentLevel : 1.0F;
-        cir.setReturnValue(visitor.visitFloat("soundCategory_" + category.getName(), level));
+        cir.setReturnValue(
+                visitor.visitFloat(
+                        "soundCategory_" + category.getName(),
+                        currentLevel != null
+                                ? currentLevel
+                                : SoundCategories.defaultLevels.getOrDefault(category, 1.0F)
+                )
+        );
     }
 }
