@@ -6,8 +6,7 @@
   "client": [
     "GameOptionsMixin",
     "SoundCategoryMixin",
-    "SoundSettingsMixin",
-    "SoundSystemMixin"
+    "SoundSettingsMixin"
   ],
   "injectors": {
     "defaultRequire": 1
