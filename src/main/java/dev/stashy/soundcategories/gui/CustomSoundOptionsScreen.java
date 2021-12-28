@@ -48,7 +48,7 @@ public class CustomSoundOptionsScreen extends GameOptionsScreen
         this.addDrawableChild(
                 Option.SUBTITLES.createButton(this.gameOptions, this.width / 2 - 155, this.height - 27, 150));
         this.addDrawableChild(
-                new ButtonWidget(this.width / 2, this.height - 27, 155, 20, ScreenTexts.DONE, (button) -> {
+                new ButtonWidget(this.width / 2 + 5, this.height - 27, 150, 20, ScreenTexts.DONE, (button) -> {
                     this.client.options.write();
                     this.client.setScreen(this.parent);
                 }));
