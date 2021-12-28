@@ -25,5 +25,10 @@ public interface CategoryLoader
          * and their volumes will be multiplied with the master category's volume level.
          */
         boolean master() default false;
+
+        /**
+         * Allows changing the default volume level if one has not yet been set.
+         */
+        float defaultLevel() default 1.0f;
     }
 }
