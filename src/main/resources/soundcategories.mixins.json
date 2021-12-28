@@ -4,6 +4,7 @@
   "package": "dev.stashy.soundcategories.mixin",
   "compatibilityLevel": "JAVA_8",
   "client": [
+    "GameOptionsMixin",
     "SoundCategoryMixin",
     "SoundSettingsMixin",
     "SoundSystemMixin"

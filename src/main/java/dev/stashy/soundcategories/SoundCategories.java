@@ -18,6 +18,7 @@ public class SoundCategories implements ClientModInitializer
 {
     private static final Logger LOGGER = LogManager.getLogger();
     public static final Map<SoundCategory, SoundCategory> parents = new HashMap<>();
+    public static final Map<SoundCategory, Float> defaultLevels = new HashMap<>();
 
     public static final Identifier SETTINGS_ICON = new Identifier("soundcategories", "textures/gui/settings.png");
 
@@ -48,10 +49,14 @@ public class SoundCategories implements ClientModInitializer
                 try
                 {
                     var category = (SoundCategory) f.get(loader);
+
                     if (annotation.master())
                         master = category;
                     else if (master != null)
                         parents.put(category, master);
+
+                    if (annotation.defaultLevel() != 1f)
+                        defaultLevels.put(category, annotation.defaultLevel());
                 }
                 catch (IllegalAccessException e)
                 {
