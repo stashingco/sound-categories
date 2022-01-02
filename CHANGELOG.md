@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1] - 2022-01-02
+
+### Changed
+
+* Added Optifine/Optifabric as an incompatible mod - causes crash on startup
+* Added Fabric API as a required dependency
+
 ## [1.2.0] - 2021-12-28
 
 ### Added
