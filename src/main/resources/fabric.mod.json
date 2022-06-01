@@ -26,8 +26,5 @@
     "minecraft": ">=1.17",
     "fabric": ">=0.44.0"
   },
-  "breaks": {
-    "optifabric": "*"
-  },
   "accessWidener": "soundcategories.accesswidener"
 }
