@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.2] - 2022-06-01
+
+### Changed
+
+* Made default level mixin optional - this makes Optifine run with SoundCategories, however the default levels for all
+  sounds will always be 100%.
+
 ## [1.2.1] - 2022-01-02
 
 ### Changed

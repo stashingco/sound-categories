@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(GameOptions.class)
 public class GameOptionsMixin
 {
-    @Inject(at = @At(value = "HEAD"), method = "method_33667", cancellable = true)
+    @Inject(at = @At(value = "HEAD"), method = "method_33667", cancellable = true, require = 0)
     private static void getDefaultFloat(GameOptions.Visitor visitor, SoundCategory category, Float currentLevel, CallbackInfoReturnable<Float> cir)
     {
         cir.setReturnValue(
