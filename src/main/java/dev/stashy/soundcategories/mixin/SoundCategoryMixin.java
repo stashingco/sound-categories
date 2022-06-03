@@ -53,7 +53,7 @@ public class SoundCategoryMixin
                 }
                 catch (IllegalAccessException e)
                 {
-                    LogManager.getLogger().debug("Failed to register sound category with ID {}", id);
+                    LogManager.getLogger().warn("Failed to register sound category with ID {}", id);
                     e.printStackTrace();
                 }
             });
