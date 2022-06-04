@@ -17,7 +17,7 @@
     "soundcategories.mixins.json"
   ],
   "entrypoints": {
-    "client": [
+    "preLaunch": [
       "dev.stashy.soundcategories.SoundCategories"
     ]
   },
