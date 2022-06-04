@@ -1,7 +1,7 @@
 package dev.stashy.soundcategories;
 
-import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
+import net.fabricmc.loader.api.entrypoint.PreLaunchEntrypoint;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class SoundCategories implements ClientModInitializer
+public class SoundCategories implements PreLaunchEntrypoint
 {
     private static final Logger LOGGER = LogManager.getLogger();
     public static final Map<SoundCategory, SoundCategory> parents = new HashMap<>();
@@ -35,7 +35,7 @@ public class SoundCategories implements ClientModInitializer
     }
 
     @Override
-    public void onInitializeClient()
+    public void onPreLaunch()
     {
         var init = SoundCategory.MASTER; //required so that the new categories are actually created, not actually used
 
