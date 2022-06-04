@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.2.4] - 2022-06-05
+
+### Fixed
+
+- Sound category volume not being saved
+
 ## [1.2.3] - 2022-06-05
 
 ### Fixed
