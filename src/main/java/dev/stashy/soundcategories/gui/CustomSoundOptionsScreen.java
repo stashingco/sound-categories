@@ -4,14 +4,13 @@ import dev.stashy.soundcategories.SoundCategories;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.screen.ScreenTexts;
 import net.minecraft.client.gui.screen.option.GameOptionsScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.option.GameOptions;
-import net.minecraft.client.option.Option;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.screen.ScreenTexts;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 
 import java.util.Arrays;
 
@@ -22,13 +21,14 @@ public class CustomSoundOptionsScreen extends GameOptionsScreen
 
     public CustomSoundOptionsScreen(Screen parent, GameOptions options)
     {
-        super(parent, options, new TranslatableText("options.sounds.title"));
+        super(parent, options, Text.translatable("options.sounds.title"));
     }
 
     protected void init()
     {
         this.list = new SoundList(this.client, this.width, this.height, 32, this.height - 32, 25);
-        list.addOption(gameOptions, Option.AUDIO_DEVICE);
+        list.addOption(gameOptions, gameOptions.getSoundDevice());
+        list.addDoubleOption(gameOptions, gameOptions.getShowSubtitles(), gameOptions.getDirectionalAudio());
 
         this.list.addCategory(SoundCategory.MASTER);
         var cats = Arrays.stream(SoundCategory.values())
@@ -46,12 +46,11 @@ public class CustomSoundOptionsScreen extends GameOptionsScreen
         this.addSelectableChild(list);
 
         this.addDrawableChild(
-                Option.SUBTITLES.createButton(this.gameOptions, this.width / 2 - 155, this.height - 27, 150));
-        this.addDrawableChild(
-                new ButtonWidget(this.width / 2 + 5, this.height - 27, 150, 20, ScreenTexts.DONE, (button) -> {
-                    this.client.options.write();
-                    this.client.setScreen(this.parent);
-                }));
+                new ButtonWidget((this.width - 310) / 2, this.height - 27, 310, 20, ScreenTexts.DONE,
+                                 (button) -> {
+                                     this.client.options.write();
+                                     this.client.setScreen(this.parent);
+                                 }));
     }
 
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta)

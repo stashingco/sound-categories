@@ -8,7 +8,7 @@ import net.minecraft.client.gui.Element;
 import net.minecraft.client.gui.Selectable;
 import net.minecraft.client.gui.widget.*;
 import net.minecraft.client.option.GameOptions;
-import net.minecraft.client.option.Option;
+import net.minecraft.client.option.SimpleOption;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.sound.SoundCategory;
 import org.jetbrains.annotations.Nullable;
@@ -35,9 +35,14 @@ public class SoundList extends ElementListWidget<SoundList.SoundEntry>
         return super.addEntry(SoundEntry.createDouble(first, second, this.width));
     }
 
-    public int addOption(GameOptions o, Option w)
+    public int addOption(GameOptions o, SimpleOption w)
     {
         return super.addEntry(SoundEntry.createOption(o, w, this.width));
+    }
+
+    public int addDoubleOption(GameOptions o, SimpleOption first, SimpleOption second)
+    {
+        return super.addEntry(SoundEntry.createDoubleOption(o, first, second, this.width));
     }
 
     public int addGroup(SoundCategory group, ButtonWidget.PressAction pressAction)
@@ -80,10 +85,18 @@ public class SoundList extends ElementListWidget<SoundList.SoundEntry>
             return new SoundEntry(w);
         }
 
-        public static SoundEntry createOption(GameOptions o, Option w, int width)
+        public static SoundEntry createOption(GameOptions o, SimpleOption w, int width)
         {
             var b = w.createButton(o, width / 2 - 155, 0, 310);
             return new SoundEntry(List.of(b));
+        }
+
+        public static SoundEntry createDoubleOption(GameOptions o, SimpleOption first, @Nullable SimpleOption second, int width)
+        {
+            List<ClickableWidget> widgets = new ArrayList<>();
+            widgets.add(first.createButton(o, width / 2 - 155, 0, 150));
+            if (second != null) widgets.add(second.createButton(o, width / 2 + 5, 0, 150));
+            return new SoundEntry(widgets);
         }
 
         public static SoundEntry createGroup(SoundCategory group, int width, ButtonWidget.PressAction pressAction)

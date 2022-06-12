@@ -2,13 +2,13 @@ package dev.stashy.soundcategories.gui;
 
 import dev.stashy.soundcategories.SoundCategories;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.screen.ScreenTexts;
 import net.minecraft.client.gui.screen.option.GameOptionsScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.screen.ScreenTexts;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 
 import java.util.Arrays;
 
@@ -18,7 +18,7 @@ public class SoundGroupOptionsScreen extends GameOptionsScreen
 
     public SoundGroupOptionsScreen(Screen parent, GameOptions gameOptions, SoundCategory category)
     {
-        super(parent, gameOptions, new TranslatableText("soundCategory." + category.getName()));
+        super(parent, gameOptions, Text.translatable("soundCategory." + category.getName()));
         parentCategory = category;
     }
 
