@@ -21,7 +21,7 @@ And the following to your dependencies:
 include("dev.stashy:sound-categories:${project.soundcategories_version}")
 ```
 
-Make sure to `include()` to embed the library into your mod, as otherwise the user will have to download
+Then add the mod version to your gradle.properties. Make sure to `include()` to embed the library into your mod, as otherwise the user will have to download
 it separately.
 
 ## Adding a category
