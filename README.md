@@ -11,7 +11,7 @@ repositories block:
 ```groovy
 maven {
     name = "stashymane's repo"
-    url = "https://repo.stashy.dev"
+    url = "https://repo.stashy.dev/releases"
 }
 ```
 
