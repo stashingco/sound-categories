@@ -1,5 +1,5 @@
 plugins {
-    id "fabric-loom" version "0.12-SNAPSHOT"
+    id "fabric-loom" version "1.0-SNAPSHOT"
     id "maven-publish"
     id "com.matthewprenger.cursegradle" version "1.4.0"
     id "com.modrinth.minotaur" version "2.2.0"
@@ -134,11 +134,4 @@ modrinth {
 task publishMod() {
     dependsOn(tasks.modrinth)
     dependsOn(tasks.curseforge)
-}
-
-gradleEnterprise {
-    buildScan {
-        termsOfServiceUrl = "https://gradle.com/terms-of-service"
-        termsOfServiceAgree = "yes"
-    }
 }
