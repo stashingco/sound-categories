@@ -6,7 +6,7 @@ import net.fabricmc.loader.api.metadata.version.VersionPredicate;
 import net.fabricmc.loader.impl.util.version.VersionPredicateParser;
 import net.minecraft.MinecraftVersion;
 
-public class WidgetWrapper {
+public class VersionUtil {
     static Version gameVersion;
 
     static {
@@ -17,7 +17,7 @@ public class WidgetWrapper {
         }
     }
 
-    public static void runIfVersion(String version, Runnable fn) {
+    public static void runIf(String version, Runnable fn) {
         try {
             VersionPredicate pred = VersionPredicateParser.parse(">=1.19.3");
             if (pred.test(gameVersion)) fn.run();

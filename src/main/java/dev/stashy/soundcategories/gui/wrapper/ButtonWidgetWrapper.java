@@ -6,11 +6,13 @@ import net.minecraft.util.Pair;
 
 import java.lang.reflect.InvocationTargetException;
 
-public class ButtonWidgetWrapper extends WidgetWrapper {
+import static dev.stashy.soundcategories.gui.wrapper.VersionUtil.runIf;
+
+public class ButtonWidgetWrapper {
     public static ButtonWidgetCreator creator;
 
     static {
-        runIfVersion(">=1.19.3", () -> {
+        runIf(">=1.19.3", () -> {
             creator = ((message, size, pos, onPress) -> {
                 try {
                     var builderMethod = ButtonWidget.class.getMethod("builder", Text.class, ButtonWidget.PressAction.class);
@@ -30,7 +32,7 @@ public class ButtonWidgetWrapper extends WidgetWrapper {
             });
         });
 
-        runIfVersion("<1.19.3", () -> {
+        runIf("<1.19.3", () -> {
             creator = ((message, size, pos, onPress) ->
             {
                 try {
