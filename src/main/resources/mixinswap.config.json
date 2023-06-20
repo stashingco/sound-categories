@@ -1,0 +1,17 @@
+{
+  "SoundCategoryMixin": {
+    "minecraft": [
+      "*"
+    ]
+  },
+  "versioned.SoundSettingsMixin_1_19_3": {
+    "minecraft": [
+      ">=2.19.3"
+    ]
+  },
+  "versioned.GameOptionsMixin_1_19_3": {
+    "minecraft": [
+      ">=1.19.3"
+    ]
+  }
+}

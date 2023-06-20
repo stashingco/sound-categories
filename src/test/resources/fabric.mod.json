@@ -1,9 +1,8 @@
 {
   "schemaVersion": 1,
-  "id": "soundcategories",
-  "version": "${version}",
-  "name": "Sound Categories",
-  "description": "Allows mods to define custom sound categories.",
+  "id": "test",
+  "version": "1.0-SNAPSHOT",
+  "name": "Test",
   "authors": [
     "stashymane"
   ],
@@ -13,21 +12,15 @@
   },
   "license": "CC0-1.0",
   "environment": "client",
-  "mixins": [
-    "soundcategories.mixins.json"
-  ],
+  "mixins": [],
   "entrypoints": {
-    "preLaunch": [
-      "dev.stashy.soundcategories.SoundCategories"
+    "soundcategories": [
+      "dev.stashy.soundcategories.TestModCategories"
     ]
   },
   "depends": {
     "fabricloader": ">=0.7.4",
     "minecraft": ">=1.18",
     "fabric": ">=0.44.0"
-  },
-  "accessWidener": "soundcategories.accesswidener",
-  "custom": {
-    "modmenu:clientsideOnly": true
   }
 }

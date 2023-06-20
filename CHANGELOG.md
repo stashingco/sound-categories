@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.0.0] - ???
+
+### Changed
+
+- Now supports multiple Minecraft versions with the same dependency.
+
 ## [1.2.4] - 2022-06-05
 
 ### Fixed
