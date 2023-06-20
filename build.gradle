@@ -16,10 +16,9 @@ group = project.maven_group
 def compatibleVersions = ["1.19.3", "1.19.2", "1.19.1", "1.19"]
 
 repositories {
-    mavenLocal()
     maven {
         name = "stashymane's repo"
-        url = "https://repo.stashy.dev"
+        url = "https://repo.stashy.dev/snapshots"
     }
     maven {
         url "https://jitpack.io"
@@ -93,7 +92,7 @@ changelog {
     version = project.mod_version
 }
 
-def currentChangelog = project.changelog.getLatest()
+def org.jetbrains.changelog.Changelog.Item currentChangelog = project.changelog.getLatest()
 
 curseforge {
     apiKey = System.getenv("CURSE_API_KEY") ?: ""
