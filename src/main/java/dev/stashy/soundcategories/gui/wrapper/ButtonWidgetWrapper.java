@@ -1,34 +1,20 @@
 package dev.stashy.soundcategories.gui.wrapper;
 
-import net.fabricmc.loader.api.Version;
-import net.fabricmc.loader.api.VersionParsingException;
-import net.fabricmc.loader.api.metadata.version.VersionPredicate;
-import net.fabricmc.loader.impl.util.version.VersionPredicateParser;
-import net.minecraft.MinecraftVersion;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.text.Text;
 import net.minecraft.util.Pair;
 
 import java.lang.reflect.InvocationTargetException;
 
-public class ButtonWidgetWrapper {
+public class ButtonWidgetWrapper extends WidgetWrapper {
     public static ButtonWidgetCreator creator;
 
     static {
-        Version version;
-        VersionPredicate pred;
-        try {
-            version = Version.parse(MinecraftVersion.CURRENT.getName());
-            pred = VersionPredicateParser.parse(">=1.19.3");
-        } catch (VersionParsingException e) {
-            throw new RuntimeException(e);
-        }
-        if (pred.test(version)) {
+        runIfVersion(">=1.19.3", () -> {
             creator = ((message, size, pos, onPress) -> {
-                Object builder = null;
                 try {
                     var builderMethod = ButtonWidget.class.getMethod("builder", Text.class, ButtonWidget.PressAction.class);
-                    builder = builderMethod.invoke(null, message, onPress);
+                    Object builder = builderMethod.invoke(null, message, onPress);
 
                     var sizeMethod = builder.getClass().getMethod("size", int.class, int.class);
                     builder = sizeMethod.invoke(builder, size.getLeft(), size.getRight());
@@ -42,7 +28,9 @@ public class ButtonWidgetWrapper {
                     throw new RuntimeException(e);
                 }
             });
-        } else {
+        });
+
+        runIfVersion("<1.19.3", () -> {
             creator = ((message, size, pos, onPress) ->
             {
                 try {
@@ -52,8 +40,7 @@ public class ButtonWidgetWrapper {
                     throw new RuntimeException(e);
                 }
             });
-
-        }
+        });
     }
 
     public interface ButtonWidgetCreator {
