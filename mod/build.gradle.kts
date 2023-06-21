@@ -3,6 +3,7 @@ import com.matthewprenger.cursegradle.CurseProject
 import com.matthewprenger.cursegradle.CurseRelation
 import com.matthewprenger.cursegradle.Options
 import net.fabricmc.loom.task.RemapJarTask
+import org.jetbrains.changelog.Changelog
 
 plugins {
     id("fabric-loom")
@@ -93,7 +94,7 @@ curseforge {
     apiKey = System.getenv("CURSE_API_KEY") ?: ""
     project(closureOf<CurseProject> {
         id = "557374"
-        changelog = currentChangelog.toHTML()
+        changelog = project.changelog.renderItem(currentChangelog, Changelog.OutputType.HTML)
         changelogType = "html"
         releaseType = "release"
         compatibleVersions.forEach { ver ->
@@ -118,7 +119,7 @@ modrinth {
     token.set(System.getenv("MODRINTH_TOKEN") ?: "")
     projectId.set("GROGt4v1")
 
-    changelog.set(currentChangelog.toText())
+    changelog.set(project.changelog.renderItem(currentChangelog, Changelog.OutputType.MARKDOWN))
     versionNumber.set(project.version.toString())
     versionName.set(project.version.toString())
     uploadFile.set(tasks.withType<RemapJarTask>())
