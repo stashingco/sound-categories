@@ -3,7 +3,6 @@ package dev.stashy.soundcategories;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.entrypoint.PreLaunchEntrypoint;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.util.Identifier;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
@@ -16,13 +15,10 @@ import static dev.stashy.soundcategories.SoundCategoriesCommon.defaultLevels;
 import static dev.stashy.soundcategories.SoundCategoriesCommon.parents;
 
 public class SoundCategories implements PreLaunchEntrypoint {
-    public static final String MODID = "soundcategories";
-    public static final Logger LOGGER = Logger.getLogger(MODID);
-
-    public static final Identifier SETTINGS_ICON = Identifier.of(MODID, "textures/gui/settings.png");
+    public static final Logger LOGGER = Logger.getLogger(SoundCategoriesCommon.MODID);
 
     public static Map<CategoryLoader, List<Field>> getCategories() {
-        return FabricLoader.getInstance().getEntrypoints(MODID, CategoryLoader.class).stream()
+        return FabricLoader.getInstance().getEntrypoints(SoundCategoriesCommon.MODID, CategoryLoader.class).stream()
                 .collect(Collectors.toMap(it -> it, SoundCategories::getRegistrations));
     }
 

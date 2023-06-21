@@ -10,7 +10,7 @@ val loader_version: String by project.properties
 dependencies {
     minecraft("com.mojang:minecraft:${minecraft_version}")
     mappings("net.fabricmc:yarn:${yarn_mappings}:v2")
-    
+
     modCompileOnly("net.fabricmc:fabric-loader:${loader_version}")
 }
 

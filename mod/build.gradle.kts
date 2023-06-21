@@ -29,8 +29,8 @@ dependencies {
 
     include(modImplementation("dev.stashy:MixinSwap:1.0.0-SNAPSHOT") as Any)
 
-    modImplementation(project(":shared", "namedElements"))
-    modImplementation(project(":versioned:1.19.3", "namedElements"))
+    implementation(project(":shared", "namedElements"))
+    implementation(project(":versioned:v1_19_3", "namedElements"))
 }
 
 loom {
