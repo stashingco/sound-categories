@@ -19,7 +19,7 @@ public abstract class GameOptionsMixin_1_19_3 {
     private Map<SoundCategory, Object> soundVolumeLevels;
 
     @Inject(at = @At(value = "HEAD"), method = "load")
-    private void preLoad(CallbackInfo ci) {
+    private void setDefaultLevels(CallbackInfo ci) {
         try {
             for (SoundCategory cat : SoundCategories.defaultLevels.keySet()) {
                 Object soundVolumeSimpleOption = soundVolumeLevels.get(cat);
