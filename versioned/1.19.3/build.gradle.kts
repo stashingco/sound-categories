@@ -11,7 +11,7 @@ dependencies {
     minecraft("com.mojang:minecraft:${minecraft_version}")
     mappings("net.fabricmc:yarn:${yarn_mappings}:v2")
 
-    modCompileOnly(project(":shared"))
+    modImplementation(project(":shared", "namedElements"))
 }
 
 base {
