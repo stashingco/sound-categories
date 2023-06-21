@@ -1,6 +1,7 @@
 package dev.stashy.soundcategories.gui;
 
 import dev.stashy.soundcategories.SoundCategories;
+import dev.stashy.soundcategories.SoundCategoriesCommon;
 import dev.stashy.soundcategories.gui.wrapper.ButtonWidgetWrapper;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.option.GameOptionsScreen;
@@ -26,8 +27,8 @@ public class SoundGroupOptionsScreen extends GameOptionsScreen {
     protected void init() {
         this.list = new SoundList(this.client, this.width, this.height, 32, this.height - 32, 25);
         Arrays.stream(SoundCategory.values())
-                .filter(it -> SoundCategories.parents.containsKey(it)
-                        && SoundCategories.parents.get(it) == parentCategory)
+                .filter(it -> SoundCategoriesCommon.parents.containsKey(it)
+                        && SoundCategoriesCommon.parents.get(it) == parentCategory)
                 .forEach(it -> list.addCategory(it));
 
         this.addSelectableChild(list);

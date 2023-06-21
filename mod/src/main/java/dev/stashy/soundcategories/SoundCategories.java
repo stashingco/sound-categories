@@ -7,17 +7,17 @@ import net.minecraft.util.Identifier;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import static dev.stashy.soundcategories.SoundCategoriesCommon.defaultLevels;
+import static dev.stashy.soundcategories.SoundCategoriesCommon.parents;
+
 public class SoundCategories implements PreLaunchEntrypoint {
     public static final String MODID = "soundcategories";
     public static final Logger LOGGER = Logger.getLogger(MODID);
-    public static final Map<SoundCategory, SoundCategory> parents = new HashMap<>();
-    public static final Map<SoundCategory, Double> defaultLevels = new HashMap<>();
 
     public static final Identifier SETTINGS_ICON = Identifier.of(MODID, "textures/gui/settings.png");
 

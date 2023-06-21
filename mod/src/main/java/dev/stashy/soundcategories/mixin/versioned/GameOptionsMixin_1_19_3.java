@@ -1,6 +1,7 @@
 package dev.stashy.soundcategories.mixin.versioned;
 
 import dev.stashy.soundcategories.SoundCategories;
+import dev.stashy.soundcategories.SoundCategoriesCommon;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.sound.SoundCategory;
 import org.spongepowered.asm.mixin.Final;
@@ -21,9 +22,9 @@ public abstract class GameOptionsMixin_1_19_3 {
     @Inject(at = @At(value = "HEAD"), method = "load")
     private void setDefaultLevels(CallbackInfo ci) {
         try {
-            for (SoundCategory cat : SoundCategories.defaultLevels.keySet()) {
+            for (SoundCategory cat : SoundCategoriesCommon.defaultLevels.keySet()) {
                 Object soundVolumeSimpleOption = soundVolumeLevels.get(cat);
-                Double level = SoundCategories.defaultLevels.get(cat);
+                Double level = SoundCategoriesCommon.defaultLevels.get(cat);
                 var setValueMethod = Class.forName("net.minecraft.client.option.SimpleOption").getMethod("setValue", Object.class);
                 setValueMethod.invoke(soundVolumeSimpleOption, level);
             }

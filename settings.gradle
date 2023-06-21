@@ -8,4 +8,5 @@ pluginManagement {
     }
 }
 
-include(":mod")
+
+include(":mod", ":shared", ":versioned:1.19.3")

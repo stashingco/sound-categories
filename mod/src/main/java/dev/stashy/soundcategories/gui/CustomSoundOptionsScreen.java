@@ -1,6 +1,7 @@
 package dev.stashy.soundcategories.gui;
 
 import dev.stashy.soundcategories.SoundCategories;
+import dev.stashy.soundcategories.SoundCategoriesCommon;
 import dev.stashy.soundcategories.gui.wrapper.ButtonWidgetWrapper;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -30,14 +31,14 @@ public class CustomSoundOptionsScreen extends GameOptionsScreen {
 
         this.list.addCategory(SoundCategory.MASTER);
         var cats = Arrays.stream(SoundCategory.values())
-                .filter(it -> !SoundCategories.parents.containsKey(
-                        it) && !SoundCategories.parents.containsValue(it))
+                .filter(it -> !SoundCategoriesCommon.parents.containsKey(
+                        it) && !SoundCategoriesCommon.parents.containsValue(it))
                 .skip(1).toList();
         var count = cats.size();
         for (int i = 0; i < count; i += 2)
             list.addDoubleCategory(cats.get(i), i + 1 < count ? cats.get(i + 1) : null);
 
-        Arrays.stream(SoundCategory.values()).filter(SoundCategories.parents::containsValue).forEach(it -> {
+        Arrays.stream(SoundCategory.values()).filter(SoundCategoriesCommon.parents::containsValue).forEach(it -> {
             list.addGroup(it, button -> {
                 this.client.setScreen(new SoundGroupOptionsScreen(this, gameOptions, it));
             });

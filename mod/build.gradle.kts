@@ -5,7 +5,7 @@ import com.matthewprenger.cursegradle.Options
 import net.fabricmc.loom.task.RemapJarTask
 
 plugins {
-    id("fabric-loom") version "0.12-SNAPSHOT"
+    id("fabric-loom")
     id("maven-publish")
     id("com.matthewprenger.cursegradle") version "1.4.0"
     id("com.modrinth.minotaur") version "2.2.0"
@@ -34,9 +34,14 @@ val api_version: String by project.properties
 dependencies {
     minecraft("com.mojang:minecraft:${minecraft_version}")
     mappings("net.fabricmc:yarn:${yarn_mappings}:v2")
+
     modImplementation("net.fabricmc:fabric-loader:${loader_version}")
     modImplementation("net.fabricmc.fabric-api:fabric-api:${api_version}")
+    
     include(modApi("dev.stashy:MixinSwap:1.0.0-SNAPSHOT") as Any)
+
+    implementation(project(":shared", "namedElements"))
+    implementation(project(":versioned:1.19.3", "namedElements"))
 }
 
 loom {
