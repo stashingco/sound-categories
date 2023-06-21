@@ -43,9 +43,9 @@ loom {
     accessWidenerPath.set(file("src/main/resources/soundcategories.accesswidener"))
 
     runs {
-//        client {
-//            source = sourceSets.test
-//        }
+        named("client") {
+            source(sourceSets.getByName("test"))
+        }
     }
 }
 
