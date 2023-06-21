@@ -32,6 +32,7 @@ dependencies {
 
     implementation(project(":shared", "namedElements"))
     implementation(project(":versioned:v1_19_3", "namedElements"))
+    implementation(project(":versioned:v1_20", "namedElements"))
 }
 
 loom {

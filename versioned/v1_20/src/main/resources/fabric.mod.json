@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "soundcategories-1_20-module",
+  "version": "${version}",
+  "name": "1.20+ module",
+  "authors": [
+    "stashymane"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/sound-categories",
+    "sources": "https://github.com/stashingco/sound-categories/"
+  },
+  "license": "CC0-1.0",
+  "environment": "client",
+  "depends": {
+    "soundcategories": "*"
+  },
+  "accessWidener": "soundcategories-1_20.accesswidener",
+  "custom": {
+    "modmenu": {
+      "parent": "soundcategories",
+      "badges": [
+        "library"
+      ]
+    }
+  }
+}
