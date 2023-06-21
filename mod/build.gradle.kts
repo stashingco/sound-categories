@@ -12,18 +12,7 @@ plugins {
     id("org.jetbrains.changelog") version "2.1.0"
 }
 
-val mod_version: String by project.properties
-val maven_group: String by project.properties
-
-version = mod_version
-group = maven_group
-
 val compatibleVersions = listOf("1.19.3", "1.19.2", "1.19.1", "1.19")
-
-repositories {
-    maven("https://repo.stashy.dev/snapshots")
-    maven("https://jitpack.io")
-}
 
 val archives_base_name: String by project.properties
 val minecraft_version: String by project.properties
@@ -37,11 +26,11 @@ dependencies {
 
     modImplementation("net.fabricmc:fabric-loader:${loader_version}")
     modImplementation("net.fabricmc.fabric-api:fabric-api:${api_version}")
-    
-    include(modApi("dev.stashy:MixinSwap:1.0.0-SNAPSHOT") as Any)
 
-    implementation(project(":shared", "namedElements"))
-    implementation(project(":versioned:1.19.3", "namedElements"))
+    include(modImplementation("dev.stashy:MixinSwap:1.0.0-SNAPSHOT") as Any)
+
+    modImplementation(project(":shared", "namedElements"))
+    modImplementation(project(":versioned:1.19.3", "namedElements"))
 }
 
 loom {
@@ -66,14 +55,6 @@ java {
 }
 
 tasks {
-    withType<ProcessResources>() {
-        inputs.property("version", project.version)
-
-        filesMatching("fabric.mod.json") {
-            expand("version" to project.version)
-        }
-    }
-
     jar {
         from("LICENSE") {
             rename { "${it}_${base.archivesName.get()}" }
@@ -103,7 +84,7 @@ publishing {
 
 changelog {
     path.set(file("../CHANGELOG.md").canonicalPath)
-    version.set(mod_version.split('-')[0])
+    version.set(project.version.toString().split('-')[0])
 }
 
 val currentChangelog = project.changelog.getLatest()
@@ -120,7 +101,7 @@ curseforge {
         }
 
         mainArtifact(tasks.withType<RemapJarTask>(), closureOf<CurseArtifact> {
-            displayName = mod_version
+            displayName = version
             relations(closureOf<CurseRelation> {
                 requiredDependency("fabric-api")
             })
@@ -138,8 +119,8 @@ modrinth {
     projectId.set("GROGt4v1")
 
     changelog.set(currentChangelog.toText())
-    versionNumber.set(mod_version)
-    versionName.set(mod_version)
+    versionNumber.set(project.version.toString())
+    versionName.set(project.version.toString())
     uploadFile.set(tasks.withType<RemapJarTask>())
     gameVersions.set(compatibleVersions)
     loaders.set(listOf("fabric"))
