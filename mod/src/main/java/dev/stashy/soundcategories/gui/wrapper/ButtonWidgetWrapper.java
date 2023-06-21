@@ -1,5 +1,7 @@
 package dev.stashy.soundcategories.gui.wrapper;
 
+import net.fabricmc.loader.api.FabricLoader;
+import net.fabricmc.loader.api.MappingResolver;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.text.Text;
 import net.minecraft.util.Pair;
@@ -10,25 +12,12 @@ import static dev.stashy.soundcategories.gui.wrapper.VersionUtil.runIf;
 
 public class ButtonWidgetWrapper {
     public static ButtonWidgetCreator creator;
+    static MappingResolver resolver = FabricLoader.getInstance().getMappingResolver();
 
     static {
         runIf(">=1.19.3", () -> {
             creator = ((message, size, pos, onPress) -> {
-                try {
-                    var builderMethod = ButtonWidget.class.getMethod("builder", Text.class, ButtonWidget.PressAction.class);
-                    Object builder = builderMethod.invoke(null, message, onPress);
-
-                    var sizeMethod = builder.getClass().getMethod("size", int.class, int.class);
-                    builder = sizeMethod.invoke(builder, size.getLeft(), size.getRight());
-
-                    var positionMethod = builder.getClass().getMethod("position", int.class, int.class);
-                    builder = positionMethod.invoke(builder, pos.getLeft(), pos.getRight());
-
-                    var buildMethod = builder.getClass().getMethod("build");
-                    return (ButtonWidget) buildMethod.invoke(builder);
-                } catch (NoSuchMethodException e) {
-                    throw new RuntimeException(e);
-                }
+                return null;
             });
         });
 
