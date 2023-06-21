@@ -22,9 +22,9 @@
     ]
   },
   "depends": {
-    "fabricloader": ">=0.7.4",
-    "minecraft": ">=1.18",
-    "fabric": ">=0.44.0"
+    "fabricloader": "*",
+    "minecraft": ">=1.19",
+    "fabric": "*"
   },
   "accessWidener": "soundcategories.accesswidener",
   "custom": {
