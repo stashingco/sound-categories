@@ -11,15 +11,15 @@ import java.util.Map;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-import static dev.stashy.soundcategories.SoundCategoriesCommon.defaultLevels;
-import static dev.stashy.soundcategories.SoundCategoriesCommon.parents;
+import static dev.stashy.soundcategories.SoundCategories.defaultLevels;
+import static dev.stashy.soundcategories.SoundCategories.parents;
 
-public class SoundCategories implements PreLaunchEntrypoint {
-    public static final Logger LOGGER = Logger.getLogger(SoundCategoriesCommon.MODID);
+public class SoundCategoriesPreLaunch implements PreLaunchEntrypoint {
+    public static final Logger LOGGER = Logger.getLogger(SoundCategories.MODID);
 
     public static Map<CategoryLoader, List<Field>> getCategories() {
-        return FabricLoader.getInstance().getEntrypoints(SoundCategoriesCommon.MODID, CategoryLoader.class).stream()
-                .collect(Collectors.toMap(it -> it, SoundCategories::getRegistrations));
+        return FabricLoader.getInstance().getEntrypoints(SoundCategories.MODID, CategoryLoader.class).stream()
+                .collect(Collectors.toMap(it -> it, SoundCategoriesPreLaunch::getRegistrations));
     }
 
     private static List<Field> getRegistrations(CategoryLoader loader) {

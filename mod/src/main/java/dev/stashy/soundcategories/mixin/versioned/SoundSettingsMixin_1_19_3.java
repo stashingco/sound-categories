@@ -1,6 +1,6 @@
 package dev.stashy.soundcategories.mixin.versioned;
 
-import dev.stashy.soundcategories.gui.CustomSoundOptionsScreen;
+import dev.stashy.soundcategories.v1_19_3.SCOptionsScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.option.OptionsScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
@@ -29,6 +29,6 @@ public abstract class SoundSettingsMixin_1_19_3 {
 
     @Redirect(at = @At(value = "INVOKE", ordinal = 1, target = "Lnet/minecraft/client/gui/screen/option/OptionsScreen;createButton(Lnet/minecraft/text/Text;Ljava/util/function/Supplier;)Lnet/minecraft/client/gui/widget/ButtonWidget;"), method = "init")
     public ButtonWidget getSoundOptionsScreen(OptionsScreen instance, Text message, Supplier<Screen> screenSupplier) {
-        return this.createButton(SOUNDS_TEXT, () -> new CustomSoundOptionsScreen((OptionsScreen) (Object) this, this.settings));
+        return this.createButton(SOUNDS_TEXT, () -> new SCOptionsScreen(instance, settings));
     }
 }

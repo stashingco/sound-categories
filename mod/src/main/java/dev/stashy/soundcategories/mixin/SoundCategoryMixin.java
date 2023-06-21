@@ -1,7 +1,7 @@
 package dev.stashy.soundcategories.mixin;
 
 import dev.stashy.soundcategories.CategoryLoader;
-import dev.stashy.soundcategories.SoundCategories;
+import dev.stashy.soundcategories.SoundCategoriesPreLaunch;
 import net.minecraft.sound.SoundCategory;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Final;
@@ -39,14 +39,14 @@ public class SoundCategoryMixin {
             shift = At.Shift.AFTER))
     private static void addCustomVariants(CallbackInfo ci) {
         ArrayList<SoundCategory> categories = new ArrayList<>(Arrays.asList(field_15255));
-        SoundCategories.getCategories().forEach((loader, fields) -> {
+        SoundCategoriesPreLaunch.getCategories().forEach((loader, fields) -> {
             fields.forEach(field -> {
                 var annotation = field.getAnnotation(CategoryLoader.Register.class);
                 var id = Objects.equals(annotation.id(), "") ? field.getName() : annotation.id();
                 try {
                     field.set(loader, addVariant(categories, id));
                 } catch (IllegalAccessException e) {
-                    SoundCategories.LOGGER.warning("Failed to register sound category with ID " + id);
+                    SoundCategoriesPreLaunch.LOGGER.warning("Failed to register sound category with ID " + id);
                     e.printStackTrace();
                 }
             });

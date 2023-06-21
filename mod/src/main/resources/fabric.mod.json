@@ -18,7 +18,7 @@
   ],
   "entrypoints": {
     "preLaunch": [
-      "dev.stashy.soundcategories.SoundCategories"
+      "dev.stashy.soundcategories.SoundCategoriesPreLaunch"
     ]
   },
   "depends": {

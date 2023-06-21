@@ -1,4 +1,4 @@
-package dev.stashy.soundcategories.gui.wrapper;
+package dev.stashy.soundcategories;
 
 import net.fabricmc.loader.api.Version;
 import net.fabricmc.loader.api.VersionParsingException;
