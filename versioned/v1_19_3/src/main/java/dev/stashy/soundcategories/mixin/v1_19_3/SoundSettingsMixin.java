@@ -1,4 +1,4 @@
-package dev.stashy.soundcategories.mixin.versioned;
+package dev.stashy.soundcategories.mixin.v1_19_3;
 
 import dev.stashy.soundcategories.v1_19_3.SCOptionsScreen;
 import net.minecraft.client.gui.screen.Screen;
@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import java.util.function.Supplier;
 
 @Mixin(OptionsScreen.class)
-public abstract class SoundSettingsMixin_1_19_3 {
+public abstract class SoundSettingsMixin {
     @Shadow
     @Final
     private GameOptions settings;
