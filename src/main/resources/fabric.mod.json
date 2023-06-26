@@ -26,7 +26,6 @@
     "minecraft": ">=1.19",
     "fabric": "*"
   },
-  "accessWidener": "soundcategories.accesswidener",
   "custom": {
     "modmenu:clientsideOnly": true
   }
