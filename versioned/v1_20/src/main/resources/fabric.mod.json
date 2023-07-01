@@ -15,6 +15,9 @@
   "depends": {
     "soundcategories": "*"
   },
+  "mixins": [
+    "soundcategories_v1_20.mixins.json"
+  ],
   "accessWidener": "soundcategories-1_20.accesswidener",
   "custom": {
     "modmenu": {

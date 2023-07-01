@@ -15,6 +15,7 @@ dependencies {
     modCompileOnly("net.fabricmc:fabric-loader:${loader_version}")
 
     implementation(project(":shared", "namedElements"))
+
 }
 
 base {

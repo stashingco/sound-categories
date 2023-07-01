@@ -1,0 +1,7 @@
+{
+  "v1_20.SoundSettingsMixin": {
+    "minecraft": [
+      ">=1.20"
+    ]
+  }
+}

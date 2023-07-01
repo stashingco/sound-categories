@@ -36,6 +36,14 @@ allprojects {
     }
 }
 
+subprojects {
+    dependencies {
+        pluginManager.withPlugin("fabric-loom") {
+            modCompileOnly("dev.stashy:MixinSwap:1.0.0-SNAPSHOT")
+        }
+    }
+}
+
 val compatibleVersions = listOf("1.19.3", "1.19.2", "1.19.1", "1.19")
 
 val archives_base_name: String by project.properties
