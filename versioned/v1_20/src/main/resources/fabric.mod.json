@@ -7,10 +7,10 @@
     "stashymane"
   ],
   "contact": {
-    "homepage": "https://www.curseforge.com/minecraft/mc-mods/sound-categories",
-    "sources": "https://github.com/stashingco/sound-categories/"
+    "homepage": "${modHomePage}",
+    "sources": "${modSources}"
   },
-  "license": "CC0-1.0",
+  "license": "${modLicense}",
   "environment": "client",
   "depends": {
     "soundcategories": "*"

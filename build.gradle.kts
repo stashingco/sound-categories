@@ -27,10 +27,12 @@ allprojects {
 
     tasks {
         withType<ProcessResources>() {
+            val props = arrayOf("modHomePage", "modSources", "modLicense").map { it to project.properties[it] }
             inputs.property("version", project.version)
+            props.forEach { inputs.property(it.first, it.second) }
 
             filesMatching("fabric.mod.json") {
-                expand("version" to project.version)
+                expand(mapOf("version" to project.version).plus(props))
             }
         }
     }
