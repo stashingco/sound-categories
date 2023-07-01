@@ -18,11 +18,11 @@ maven {
 And the following to your dependencies:
 
 ```groovy
-modImplementation include("dev.stashy:sound-categories:${project.soundcategories_version}")
+modImplementation("dev.stashy:sound-categories:${project.soundcategories_version}")
 ```
 
-Make sure to keep the `include()` part to embed the library into your mod, as otherwise the user will have to download
-it separately.
+**Note**: Starting with v2 it is no longer recommended to include SoundCategories in your mod due to multi-version
+support, and an increased file size.
 
 ## Adding a category
 
@@ -36,15 +36,14 @@ Example class:
 import dev.stashy.soundcategories.CategoryLoader;
 import net.minecraft.sound.SoundCategory;
 
-public class CustomCategories implements CategoryLoader
-{
+public class CustomCategories implements CategoryLoader {
     @Register(master = true)
     public static SoundCategory MOD_MAIN;
     @Register
     public static SoundCategory SUBCATEGORY;
     @Register(name = "your_custom_name")
     public static SoundCategory CUSTOM_NAME;
-    @Register(defaultLevel = 0f)
+    @Register(defaultLevel = 0.0)
     public static SoundCategory OFF_BY_DEFAULT;
 }
 ```
@@ -57,11 +56,11 @@ The register annotation has a few attributes:
   simple `MASTER` variable set and not conflict with Minecraft's own master category.
 * `defaultLevel`, quite obviously, is used as the default level the game creates your category with.
 
-After implementing the loader, make sure you add the class as an entrypoint for `sound-categories` in
-your `fabric.mod.json`.
+After implementing the loader, make sure you add the class as an entrypoint for `soundcategories` in
+your `fabric.mod.json`. You can check the test mod in the main source folder for an example.
 
 ## Localization
 
-The newly added category needs language definitions to show any name, apart from its key. You can do so in your `lang`
+The newly added category needs language definitions to show the name. You can do so in your `lang`
 folder. For an example, you can check the
 [ExtraSounds](https://github.com/stashymane/extra-sounds/) language files.
