@@ -25,6 +25,6 @@ public abstract class SoundSettingsMixin extends Screen {
 
     @Redirect(method = "method_19829", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/MinecraftClient;setScreen(Lnet/minecraft/client/gui/screen/Screen;)V"))
     public void getSoundOptionsScreen(MinecraftClient instance, Screen screen) {
-        instance.setScreen(new SCOptionsScreen(screen, settings));
+        instance.setScreen(new SCOptionsScreen(this, settings));
     }
 }
