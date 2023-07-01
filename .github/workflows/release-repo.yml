@@ -30,7 +30,7 @@ jobs:
       - name: Publish on Maven repository
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: :mod:publishMavenJavaPublicationToMavenRepository
+          arguments: publishMavenJavaPublicationToMavenRepository
         env:
           ORG_GRADLE_PROJECT_publish_username: ${{ secrets.PUBLISH_USERNAME }}
           ORG_GRADLE_PROJECT_publish_password: ${{ secrets.PUBLISH_PASSWORD }}
