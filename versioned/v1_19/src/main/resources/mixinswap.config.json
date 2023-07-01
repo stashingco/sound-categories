@@ -1,0 +1,14 @@
+{
+  "v1_19.SoundSettingsMixin": {
+    "minecraft": [
+      ">=1.19",
+      "<1.19.3"
+    ]
+  },
+  "v1_19.GameOptionsMixin": {
+    "minecraft": [
+      ">=1.19",
+      "<1.19.3"
+    ]
+  }
+}

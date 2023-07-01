@@ -1,0 +1,10 @@
+{
+  "required": false,
+  "minVersion": "0.8",
+  "package": "dev.stashy.soundcategories.mixin",
+  "plugin": "dev.stashy.soundcategories.mixin.v1_19.MixinConfig_1_19",
+  "compatibilityLevel": "JAVA_17",
+  "injectors": {
+    "defaultRequire": 0
+  }
+}

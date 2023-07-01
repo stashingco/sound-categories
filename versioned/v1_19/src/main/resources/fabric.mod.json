@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "soundcategories-1_19-module",
+  "version": "${version}",
+  "name": "1.19+ module",
+  "authors": [
+    "stashymane"
+  ],
+  "contact": {
+    "homepage": "${modHomePage}",
+    "sources": "${modSources}"
+  },
+  "license": "${modLicense}",
+  "environment": "client",
+  "depends": {
+    "soundcategories": "*"
+  },
+  "mixins": [
+    "soundcategories_v1_19.mixins.json"
+  ],
+  "custom": {
+    "modmenu": {
+      "parent": "soundcategories",
+      "badges": [
+        "library"
+      ]
+    }
+  }
+}
