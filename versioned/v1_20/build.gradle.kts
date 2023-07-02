@@ -6,7 +6,7 @@ val archives_base_name: String by project.properties
 
 val minecraft_version: String = "1.20"
 val yarn_mappings: String = "1.20+build.1"
-val loader_version: String = "0.14.21"
+val loader_version: String by project.properties
 
 dependencies {
     minecraft("com.mojang:minecraft:${minecraft_version}")
@@ -14,7 +14,7 @@ dependencies {
 
     modCompileOnly("net.fabricmc:fabric-loader:${loader_version}")
 
-    implementation(project(":shared", "namedElements"))
+    modCompileOnly(project(":shared", "namedElements"))
 }
 
 loom {

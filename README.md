@@ -18,7 +18,7 @@ maven {
 And the following to your dependencies:
 
 ```groovy
-modImplementation("dev.stashy:sound-categories:${project.soundcategories_version}")
+modImplementation("dev.stashy.soundcategories:soundcategories:${project.soundcategories_version}")
 ```
 
 **Note**: Starting with v2 it is no longer recommended to include SoundCategories in your mod due to multi-version
