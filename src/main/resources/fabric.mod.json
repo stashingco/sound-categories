@@ -8,10 +8,10 @@
     "stashymane"
   ],
   "contact": {
-    "homepage": "${modHomePage}",
-    "sources": "${modSources}"
+    "homepage": "${mod_page}",
+    "sources": "${mod_sources}"
   },
-  "license": "${modLicense}",
+  "license": "${mod_license}",
   "environment": "client",
   "mixins": [
     "soundcategories.mixins.json"

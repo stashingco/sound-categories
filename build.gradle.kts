@@ -27,9 +27,9 @@ allprojects {
 
     tasks {
         withType<ProcessResources>() {
-            val props = arrayOf("modHomePage", "modSources", "modLicense").map { it to project.properties[it] }
+            val props = listOf("mod_page", "mod_sources", "mod_license").associateWith { project.properties[it] }
             inputs.property("version", project.version)
-            props.forEach { inputs.property(it.first, it.second) }
+            inputs.properties(props)
 
             filesMatching("fabric.mod.json") {
                 expand(mapOf("version" to project.version).plus(props))
@@ -63,10 +63,10 @@ dependencies {
 
     modImplementation("dev.stashy:MixinSwap:1.0.0-SNAPSHOT")?.let { include(it) }
 
-    implementation(project(":shared", "namedElements"))?.let { include(it) }
-    implementation(project(":versioned:v1_19", "namedElements"))?.let { include(it) }
-    implementation(project(":versioned:v1_19_3", "namedElements"))?.let { include(it) }
-    implementation(project(":versioned:v1_20", "namedElements"))?.let { include(it) }
+    compileOnly(project(":shared", "namedElements"))?.let { include(it) }
+    compileOnly(project(":versioned:v1_19", "namedElements"))?.let { include(it) }
+    compileOnly(project(":versioned:v1_19_3", "namedElements"))?.let { include(it) }
+    compileOnly(project(":versioned:v1_20", "namedElements"))?.let { include(it) }
 }
 
 
