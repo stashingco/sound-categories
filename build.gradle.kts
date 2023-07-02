@@ -63,7 +63,7 @@ dependencies {
 
     modImplementation("dev.stashy:MixinSwap:1.0.0-SNAPSHOT")?.let { include(it) }
 
-    api(project(":shared", "namedElements"))?.let { include(it) }
+    implementation(project(":shared", "namedElements"))?.let { include(it) }
     implementation(project(":versioned:v1_19", "namedElements"))?.let { include(it) }
     implementation(project(":versioned:v1_19_3", "namedElements"))?.let { include(it) }
     implementation(project(":versioned:v1_20", "namedElements"))?.let { include(it) }
