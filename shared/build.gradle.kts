@@ -15,5 +15,5 @@ dependencies {
 }
 
 base {
-    archivesName.set("$archives_base_name.shared")
+    archivesName.set("$archives_base_name-shared")
 }

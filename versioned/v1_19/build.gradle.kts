@@ -14,9 +14,9 @@ dependencies {
 
     modCompileOnly("net.fabricmc:fabric-loader:${loader_version}")
 
-    modCompileOnly(project(":shared", "namedElements"))
+    compileOnly(project(":shared", "namedElements"))
 }
 
 base {
-    archivesName.set("$archives_base_name.1.19")
+    archivesName.set("$archives_base_name-1.19")
 }
